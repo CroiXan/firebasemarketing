@@ -241,6 +241,9 @@ public class FirebasePlugin extends CordovaPlugin {
     }else if(action.equals("validateLastUserReview")){
      this.validateLastUserReview(callbackContext, args.getString(0));
      return true;
+	}else if(action.equals("getIUId")){
+	 this.getIUId(callbackContext);
+	 return true;
   }
     return false;
   }
@@ -1213,5 +1216,20 @@ public void validateLastUserReview(final CallbackContext callbackContext, String
         }
     });
   }
-  
+  //IU 
+    private void getIUId(final CallbackContext callbackContext) {
+    Log.d(TAG, "getIUId called");
+    cordova.getThreadPool().execute(new Runnable() {
+      public void run() {
+        try {
+          String id = IUApp.getFCMSenderId()
+          callbackContext.success(id);
+          Log.d(TAG, "getId success. id: " + id);
+        } catch (Exception e) {
+          Crashlytics.logException(e);
+          callbackContext.error(e.getMessage());
+        }
+      }
+    });
+  }
 }
