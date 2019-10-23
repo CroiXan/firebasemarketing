@@ -1222,7 +1222,7 @@ public void validateLastUserReview(final CallbackContext callbackContext, String
     cordova.getThreadPool().execute(new Runnable() {
       public void run() {
         try {
-          String id = IUApp.getFCMSenderId()
+          String id = IUApp.getFCMSenderId();
           callbackContext.success(id);
           Log.d(TAG, "getId success. id: " + id);
         } catch (Exception e) {
