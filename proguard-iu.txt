@@ -17,3 +17,6 @@
 -keep class amazonia.iu.com.amlibrary.vas.VasAcknowledgementDTO {*; }
 -keep class amazonia.iu.com.amlibrary.vas.VasRequestDTO {*;}
 -keep class amazonia.iu.com.amlibrary.vas.VasResponse {*;}
+-dontwarn android.support.v7.**
+-keep class android.support.v7.** { *; }
+-keep interface android.support.v7.** { *; }
