@@ -67,6 +67,7 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
 
      if (remoteMessage.getFrom().equals(IUApp.getFCMSenderId())) {
         IUApp.handleFCMMessage(this,remoteMessage) ;
+		return;
      }
 
     //IUApp.handleFCMMessage(this,remoteMessage);
@@ -171,8 +172,7 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
       Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 	  
 	  NotificationCompat.BigPictureStyle notificationStylePicture; 
-	  NotificationCompat.BigTextStyle notificationStyleText; 
-    title = "hola";
+	  NotificationCompat.BigTextStyle notificationStyleText;
 	  
       NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId);
       notificationBuilder
