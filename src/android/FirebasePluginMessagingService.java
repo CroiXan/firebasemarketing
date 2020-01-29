@@ -49,12 +49,17 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
       name, "string", this.getPackageName()));
   }
 
-  public void onNewToken(String s) {
-  super.onNewToken(s);
-  // BEGIN: Add code to refresh IU Token.
-  IUApp.refreshFCMToken(this);
-  // END
+  /**
+   * Called if InstanceID token is updated. This may occur if the security of
+   * the previous token had been compromised. Note that this is called when the InstanceID token
+   * is initially generated so this is where you would retrieve the token.
+  */
+  @Override
+  public void onNewToken(String token) {
+    Log.d(TAG, "Refreshed token: " + token);
+    FirebasePlugin.sendToken(token);
   }
+
   /**
    * Called when message is received.
    *
@@ -132,7 +137,7 @@ public class FirebasePluginMessagingService extends FirebaseMessagingService {
     }
 
     String badge = data.get("badge");
-   Log.d(TAG, "Hola warrior");
+
     Log.d(TAG, "From: " + remoteMessage.getFrom());
     Log.d(TAG, "Notification Message id: " + id);
     Log.d(TAG, "Notification Message Title: " + title);
